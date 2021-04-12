@@ -1,0 +1,9 @@
+[package]
+name = "exgi"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+clap = "2.33"
+dirs = "3"
+rusqlite = "0.25"
