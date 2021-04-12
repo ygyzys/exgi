@@ -1,22 +1,27 @@
 # `exgi`: Atomic opening book
 
+Note: there is no actual book yet.
+
 ## Installation
 
 Install stable Rust toolchain and `libsqlite3-dev`.
 TODO: instructions for Ubuntu.
 ```
-rustup update```
+rustup update
+```
 
 Now you can build and install the database:
 ```
 git clone https://github.com/yzygys/exgi
 cd exgi
 cargo install --path .
-exgi```
+exgi
+```
 
 If the system cannot find `exgi` binary, most likely you need to add `$HOME/.cargo/bin` to `PATH`. See [cargo install path resolution](https://doc.rust-lang.org/cargo/commands/cargo-install.html). You can also use the database without installing it in the system by running:
 ```
-cargo run --release <args>```
+cargo run --release <args>
+```
 
 ## Persistent storage
 
