@@ -1,19 +1,22 @@
 mod common;
 mod init;
 
-use clap::{crate_version, App, SubCommand, AppSettings::DisableVersion};
+use clap::{clap_app, crate_version, AppSettings::DisableVersion};
 
 // Add autocompletion using clap
 fn main() {
-    let mut app = App::new("exgi")
-        .version(crate_version!())
-        .about("atomic opening book")
-        .subcommand(SubCommand::with_name("init")
-            .about("initialize database the first time")
-            .setting(DisableVersion))
-        .subcommand(SubCommand::with_name("reset")
-            .about("delete existing database and initialize again")
-            .setting(DisableVersion));
+    let mut app = clap_app!(exgi =>
+        (version: crate_version!())
+        (about: "atomic opening book")
+        (@subcommand init =>
+            (about: "initialize database the first time")
+            (setting: DisableVersion)
+        )
+        (@subcommand reset =>
+            (about: "delete existing database and initialize again")
+            (setting: DisableVersion)
+        )
+    );
     let mut help_buf: Vec<u8> = Vec::new();
     app.write_long_help(&mut help_buf).expect("write_help");
     let matches = app.get_matches();
