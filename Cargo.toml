@@ -6,4 +6,4 @@ edition = "2018"
 [dependencies]
 clap = "2.33"
 dirs = "3"
-rusqlite = "0.25"
+rusqlite = {version = "0.25", features = ["bundled"]}
