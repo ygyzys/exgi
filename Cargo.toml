@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
+bzip2-rs = "0.1"
 clap = "2.33"
 dirs = "3"
 rusqlite = {version = "0.25", features = ["bundled"]}

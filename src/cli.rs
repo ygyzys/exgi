@@ -19,6 +19,13 @@ pub fn app() -> App<'static, 'static> {
         (@subcommand reset =>
             (about: "delete existing database and initialize again")
         )
+        (@subcommand top =>
+            (about: "list top players in the pgn file according to rating maximum reached")
+            (@arg NUM: -n --num_players +takes_value "number of top players to print")
+            (@arg PATH: -p --pgn +takes_value "input .pgn or .pgn.bz2 file")
+            (@arg MONTH: -m --month +takes_value "month in YYYY-MM format to use the corresponding .pgn.bz2 file from lichess game database")
+            (@arg download: -d --download "use with --month option to download the file if it is not yet present in cache")
+        )
     )
 }
 
