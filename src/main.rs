@@ -1,6 +1,8 @@
 mod common;
 mod cli;
+mod info;
 mod init;
+mod top;
 
 fn main() {
     let matches = cli::app().get_matches_safe();
@@ -30,12 +32,17 @@ fn main() {
     }
     if matches.subcommand_matches("init").is_some() {
         init::init();
-        println!("Database initialized successfully.");
+        eprintln!("init: SUCCESS\nDatabase initialized.");
         return;
     }
     if matches.subcommand_matches("reset").is_some() {
         init::reset();
-        println!("Database reset successfully.");
+        eprintln!("reset: SUCCESS\nDatabase reinitialized.");
+        return;
+    }
+    if let Some(submatch) = matches.subcommand_matches("top") {
+        top::top(cli::pgn(&submatch), cli::num_players(&submatch));
+        eprintln!("top: SUCCESS");
         return;
     }
 

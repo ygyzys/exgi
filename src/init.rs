@@ -1,6 +1,5 @@
 use std::fs::OpenOptions;
 use std::io::ErrorKind;
-use std::path::PathBuf;
 
 use rusqlite::Connection;
 
@@ -17,10 +16,10 @@ fn init_at(path: &PathBuf, new_only: bool) {
     if let Err(err) = db {
         let path = path.clone();
         if err.kind() == ErrorKind::AlreadyExists {
-            println!("Can't initialize database since it already exists (at `{}`).\n\
-                Consider using `exgi reset` command or changing `EXGI_STORAGE_PATH`.", ptos(path));
+            eprintln!("Can't initialize database since it already exists (at `{}`).\n\
+                Consider using `exgi reset` command or changing `EXGI_STORAGE_PATH`.", ptos(&path));
         } else {
-            println!("Can't create file `{}`: {}", ptos(path), err);
+            eprintln!("Can't create file `{}`: {}", ptos(&path), err);
         }
         std::process::exit(1);
     }
@@ -44,7 +43,7 @@ pub fn reset() {
     end_path.push(ATOMIC_DB_PATH);
     init_at(&path, false);
     if let Err(err) = std::fs::rename(&path, &end_path) {
-        println!("Can't move from `{}` to `{}`: {}", ptos(path), ptos(end_path), err);
+        eprintln!("Can't move from `{}` to `{}`: {}", ptos(&path), ptos(&end_path), err);
         std::process::exit(1);
     }
 }

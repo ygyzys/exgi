@@ -4,7 +4,13 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
+btoi = "0.4"
 bzip2-rs = "0.1"
 clap = "2.33"
 dirs = "3"
-rusqlite = {version = "0.25", features = ["bundled"]}
+itertools = "0.7"
+madvise = "0.1"
+memmap = "0.7"
+pgn-reader = "0.17"
+rusqlite = { version = "0.25", features = ["bundled"] }
+shakmaty = { version = "0.18", features = ["variant"] }
